@@ -1,26 +1,23 @@
 "use client";
-
 import { profile } from "@/lib/data";
 import Container from "./Container";
 import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <div className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-100">
-      {/* Animated background accents */}
+    <div className="relative overflow-hidden bg-gradient-to-br from-brand-50 via-white to-brand-100 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900">
       <div className="absolute -top-20 -left-20 w-72 h-72 rounded-full bg-brand-200 blur-3xl opacity-30 animate-pulse" />
       <div className="absolute -bottom-24 -right-24 w-80 h-80 rounded-full bg-brand-300 blur-3xl opacity-20 animate-pulse" />
 
       <Container>
-        <div className="pt-20 md:pt-24 pb-20 md:pb-28 grid md:grid-cols-2 items-center gap-12 relative z-10">
-          {/* Left Content */}
+        <div className="pt-24 pb-20 grid md:grid-cols-2 items-center gap-12 relative z-10">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="space-y-6"
           >
-            <span className="inline-block px-4 py-1 text-sm font-semibold rounded-full bg-brand-100 text-brand-700 shadow-sm">
+            <span className="inline-block px-4 py-1 text-sm font-semibold rounded-full bg-brand-100 text-brand-700 shadow-sm dark:bg-gray-800 dark:text-brand-300">
               Power Platform Developer
             </span>
 
@@ -34,7 +31,6 @@ export default function Hero() {
               {profile.summary}
             </p>
 
-            {/* CTA Buttons */}
             <div className="flex gap-4">
               <motion.a
                 href="#projects"
@@ -55,7 +51,6 @@ export default function Hero() {
             </div>
           </motion.div>
 
-          {/* Right Skills Card */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -63,13 +58,10 @@ export default function Hero() {
             className="relative rounded-2xl bg-white/70 dark:bg-gray-900/40 backdrop-blur-xl p-8 grid grid-cols-2 gap-4 shadow-xl"
           >
             <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-100/40 to-transparent pointer-events-none" />
-            {profile.skills.slice(0, 6).map((s, i) => (
+            {profile.skills.slice(0, 6).map((s) => (
               <motion.div
                 key={s}
-                whileHover={{
-                  scale: 1.05,
-                  boxShadow: "0 8px 20px rgba(0,0,0,0.1)",
-                }}
+                whileHover={{ scale: 1.05 }}
                 className="relative z-10 px-4 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 bg-white/80 dark:bg-gray-800/60 backdrop-blur-md rounded-full shadow-sm cursor-default transition"
               >
                 {s}

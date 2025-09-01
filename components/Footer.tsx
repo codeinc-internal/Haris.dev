@@ -6,8 +6,6 @@ export default function Footer() {
   return (
     <footer className="bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 text-gray-300 py-6 mt-20">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between px-6 space-y-4 md:space-y-0">
-        
-        {/* Copyright */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
@@ -18,7 +16,6 @@ export default function Footer() {
           <span className="font-semibold text-white">Haris.dev</span>. All rights reserved.
         </motion.p>
 
-        {/* Social Links */}
         <div className="flex space-x-6">
           <a
             href="https://github.com/"

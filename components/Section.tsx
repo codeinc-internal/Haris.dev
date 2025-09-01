@@ -13,7 +13,7 @@ export default function Section({
   children: ReactNode;
 }) {
   return (
-    <section id={id} className="section " style={{ paddingBottom: "0px" }}>
+    <section id={id} className="section" style={{ paddingBottom: "0px" }}>
       <Container>
         <div className="mb-5">
           {eyebrow && <p className="text-xs uppercase tracking-widest text-brand-700 mb-2">{eyebrow}</p>}

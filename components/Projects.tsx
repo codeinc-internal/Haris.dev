@@ -31,9 +31,9 @@ export default function Projects() {
             key={idx}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ delay: idx * 0.2 }}
-            whileHover={{ scale: 1.05 }}
-            className="bg-white dark:bg-gray-800 shadow-lg rounded-2xl p-6"
+            transition={{ delay: idx * 0.15 }}
+            whileHover={{ scale: 1.03 }}
+            className="card p-6"
           >
             <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
             <p className="text-sm text-gray-600 dark:text-gray-300 mb-4">{project.desc}</p>

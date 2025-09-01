@@ -1,19 +1,16 @@
-import Background from "@/components/Background";
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
-import { ThemeProvider } from "next-themes";
 import "./globals.css";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Haris.dev – Portfolio",
+  description: "Power Platform Developer Portfolio",
+};
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className="relative pt-16">
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem>
-          <Background />
-          <Header />
-          <main>{children}</main>
-          <Footer />
-        </ThemeProvider>
+      <body className="bg-white dark:bg-gray-950 text-gray-900 dark:text-gray-100">
+        {children}
       </body>
     </html>
   );

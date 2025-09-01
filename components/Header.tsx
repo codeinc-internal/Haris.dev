@@ -11,7 +11,9 @@ import {
   Menu,
   X,
   Moon,
+  Sun,
 } from "lucide-react";
+import useDarkMode from "@/hooks/useDarkMode";
 
 const navItems = [
   { name: "Home", href: "#home", icon: Home },
@@ -23,6 +25,7 @@ const navItems = [
 
 export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
+  const { theme, toggleTheme } = useDarkMode();
 
   return (
     <header className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full px-4">
@@ -31,7 +34,6 @@ export default function Header() {
         role="navigation"
         aria-label="Main Navigation"
       >
-        {/* Logo */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -41,14 +43,9 @@ export default function Header() {
           Haris<span className="text-gray-500 dark:text-gray-300">.dev</span>
         </motion.div>
 
-        {/* Desktop Menu */}
         <ul className="hidden md:flex items-center space-x-4">
           {navItems.map((item, idx) => (
-            <motion.li
-              key={idx}
-              whileHover={{ scale: 1.05 }}
-              className="relative group"
-            >
+            <motion.li key={idx} whileHover={{ scale: 1.05 }} className="relative group">
               <Link
                 href={item.href}
                 className="flex items-center gap-2 px-4 py-2 rounded-full text-gray-700 dark:text-gray-200 font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600"
@@ -58,15 +55,22 @@ export default function Header() {
               </Link>
             </motion.li>
           ))}
-          {/* Dark Mode Toggle Placeholder */}
           <li>
-            <button className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
-              <Moon size={18} className="text-gray-700 dark:text-gray-200" />
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+              aria-label="Toggle Dark Mode"
+              title={theme === "dark" ? "Switch to Light" : "Switch to Dark"}
+            >
+              {theme === "dark" ? (
+                <Sun size={18} className="text-yellow-400" />
+              ) : (
+                <Moon size={18} className="text-gray-700 dark:text-gray-200" />
+              )}
             </button>
           </li>
         </ul>
 
-        {/* Mobile Menu Button */}
         <button
           className="md:hidden text-gray-700 dark:text-gray-200"
           onClick={() => setIsOpen(!isOpen)}
@@ -76,7 +80,6 @@ export default function Header() {
         </button>
       </nav>
 
-      {/* Mobile Menu Drawer */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -99,6 +102,18 @@ export default function Header() {
                   </Link>
                 </li>
               ))}
+              <li>
+                <button
+                  onClick={toggleTheme}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                >
+                  {theme === "dark" ? (
+                    <><Sun size={20} className="text-yellow-400" /> Light Mode</>
+                  ) : (
+                    <><Moon size={20} className="text-gray-600" /> Dark Mode</>
+                  )}
+                </button>
+              </li>
             </ul>
           </motion.div>
         )}

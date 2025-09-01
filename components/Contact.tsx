@@ -1,5 +1,4 @@
 "use client";
-
 import Section from "./Section";
 import { useState } from "react";
 import { motion } from "framer-motion";
@@ -9,13 +8,13 @@ export default function Contact() {
   const [sent, setSent] = useState(false);
 
   return (
-    <Section id="contact" title="Get In Touch" eyebrow="Contact"  >
+    <Section id="contact" title="Get In Touch" eyebrow="Contact">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="card p-4 md:p-6 bg-gradient-to-br from-white to-brand-50 shadow-xl rounded-2xl"
+        className="card p-4 md:p-6 bg-gradient-to-br from-white to-brand-50 dark:from-gray-900 dark:to-gray-800/60 shadow-xl rounded-2xl"
       >
         {!sent ? (
           <form
@@ -28,20 +27,20 @@ export default function Contact() {
             <motion.input
               whileFocus={{ scale: 1.02 }}
               required
-              className="border border-gray-200 rounded-xl px-3 py-2 shadow-sm focus:ring-2 focus:ring-brand-400 focus:border-brand-400 transition-all text-sm"
+              className="border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-2 shadow-sm focus:ring-2 focus:ring-brand-400 focus:border-brand-400 transition-all text-sm bg-white dark:bg-gray-800"
               placeholder="Your name"
             />
             <motion.input
               whileFocus={{ scale: 1.02 }}
               required
               type="email"
-              className="border border-gray-200 rounded-xl px-3 py-2 shadow-sm focus:ring-2 focus:ring-brand-400 focus:border-brand-400 transition-all text-sm"
+              className="border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-2 shadow-sm focus:ring-2 focus:ring-brand-400 focus:border-brand-400 transition-all text-sm bg-white dark:bg-gray-800"
               placeholder="Email"
             />
             <motion.textarea
               whileFocus={{ scale: 1.02 }}
               required
-              className="border border-gray-200 rounded-xl px-3 py-2 h-24 shadow-sm focus:ring-2 focus:ring-brand-400 focus:border-brand-400 transition-all text-sm"
+              className="border border-gray-200 dark:border-gray-700 rounded-xl px-3 py-2 h-24 shadow-sm focus:ring-2 focus:ring-brand-400 focus:border-brand-400 transition-all text-sm bg-white dark:bg-gray-800"
               placeholder="Message"
             />
             <motion.button
@@ -59,9 +58,9 @@ export default function Contact() {
             className="flex flex-col items-center gap-1 text-center"
           >
             <p className="text-base font-medium text-green-600">
-              ✅ Thanks! Your  message was sent.
+              ✅ Thanks! Your message was sent.
             </p>
-            <p className="text-gray-500 text-xs">
+            <p className="text-gray-500 dark:text-gray-400 text-xs">
               I’ll get back to you as soon as possible.
             </p>
           </motion.div>
