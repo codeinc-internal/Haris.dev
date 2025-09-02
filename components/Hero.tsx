@@ -50,24 +50,38 @@ export default function Hero() {
               </motion.a>
             </div>
           </motion.div>
-
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="relative rounded-2xl bg-white/70 dark:bg-gray-900/40 backdrop-blur-xl p-8 grid grid-cols-2 gap-4 shadow-xl"
+            className="relative rounded-2xl bg-white dark:bg-gray-900 p-6 md:p-8 shadow-xl border border-gray-200 dark:border-gray-800"
           >
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-brand-100/40 to-transparent pointer-events-none" />
-            {profile.skills.slice(0, 6).map((s) => (
-              <motion.div
-                key={s}
-                whileHover={{ scale: 1.05 }}
-                className="relative z-10 px-4 py-2 text-sm font-medium text-gray-800 dark:text-gray-200 bg-white/80 dark:bg-gray-800/60 backdrop-blur-md rounded-full shadow-sm cursor-default transition"
-              >
-                {s}
-              </motion.div>
-            ))}
+            <h3 className="text-lg md:text-xl font-semibold text-gray-900 dark:text-white mb-6">
+              My Skills
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+              {profile.skills.slice(0, 6).map((s, i) => (
+                <motion.div
+                  key={s}
+                  initial={{ opacity: 0, y: 15 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                  whileHover={{ scale: 1.04 }}
+                  className="px-3 py-2 md:px-4 md:py-2.5 text-sm md:text-[15px] font-medium 
+          text-gray-700 dark:text-gray-200
+          bg-gray-50 dark:bg-gray-800 rounded-lg 
+          border border-gray-200 dark:border-gray-700
+          shadow-sm hover:shadow-md transition"
+                >
+                  {s}
+                </motion.div>
+              ))}
+            </div>
           </motion.div>
+
+
+
         </div>
       </Container>
     </div>

@@ -12,6 +12,7 @@ import {
   X,
   Moon,
   Sun,
+  FileDown,
 } from "lucide-react";
 import useDarkMode from "@/hooks/useDarkMode";
 
@@ -28,66 +29,84 @@ export default function Header() {
   const { theme, toggleTheme } = useDarkMode();
 
   return (
-    <header className="fixed top-4 left-1/2 transform -translate-x-1/2 z-50 w-full px-4">
+    <header className="fixed top-4 left-1/2 -translate-x-1/2 z-50 w-full px-4">
       <nav
-        className="backdrop-blur-md bg-white/80 dark:bg-gray-900/80 shadow-lg rounded-full border border-gray-200 dark:border-gray-700 max-w-4xl mx-auto px-6 py-3 flex items-center justify-between"
+        className="backdrop-blur-xl bg-white/90 dark:bg-gray-900/90 shadow-lg rounded-full border border-gray-200 dark:border-gray-700 max-w-4xl mx-auto px-6 py-3 flex items-center justify-between"
         role="navigation"
         aria-label="Main Navigation"
       >
+        {/* Logo */}
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="hidden md:block text-lg font-bold text-blue-600 dark:text-blue-400 select-none"
+          className="text-xl font-bold text-blue-600 dark:text-blue-400 select-none"
         >
           Haris<span className="text-gray-500 dark:text-gray-300">.dev</span>
         </motion.div>
 
-        <ul className="hidden md:flex items-center space-x-4">
-          {navItems.map((item, idx) => (
-            <motion.li key={idx} whileHover={{ scale: 1.05 }} className="relative group">
-              <Link
-                href={item.href}
-                className="flex items-center gap-2 px-4 py-2 rounded-full text-gray-700 dark:text-gray-200 font-medium transition-all hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600"
-              >
-                <item.icon size={18} />
-                {item.name}
-              </Link>
-            </motion.li>
-          ))}
-          <li>
-            <button
-              onClick={toggleTheme}
-              className="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-              aria-label="Toggle Dark Mode"
-              title={theme === "dark" ? "Switch to Light" : "Switch to Dark"}
-            >
-              {theme === "dark" ? (
-                <Sun size={18} className="text-yellow-400" />
-              ) : (
-                <Moon size={18} className="text-gray-700 dark:text-gray-200" />
-              )}
-            </button>
-          </li>
-        </ul>
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center space-x-2">
+          <ul className="flex items-center space-x-1">
+            {navItems.map((item, idx) => (
+              <motion.li key={idx} whileHover={{ scale: 1.05 }}>
+                <Link
+                  href={item.href}
+                  className="flex items-center gap-2 px-4 py-2 rounded-full text-[15px] font-medium text-gray-700 dark:text-gray-200 transition-all hover:bg-gray-100 dark:hover:bg-gray-800 hover:text-blue-600"
+                >
+                  <item.icon size={17} />
+                  {item.name}
+                </Link>
+              </motion.li>
+            ))}
 
+            {/* Resume Button */}
+            <li>
+              <a
+                href="/resume.pdf"
+                download
+                className="flex items-center gap-2 px-4 py-2 rounded-full text-base font-semibold text-white bg-blue-600 hover:bg-blue-700 transition shadow-md"
+              >
+                <FileDown size={18} />
+                Resume
+              </a>
+            </li>
+          </ul>
+
+          {/* Dark Mode Toggle */}
+          <button
+            onClick={toggleTheme}
+            className="ml-3 flex items-center justify-center w-9 h-9 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            aria-label="Toggle Dark Mode"
+            title={theme === "dark" ? "Switch to Light" : "Switch to Dark"}
+          >
+            {theme === "dark" ? (
+              <Sun size={18} className="text-yellow-400" />
+            ) : (
+              <Moon size={18} className="text-gray-700 dark:text-gray-200" />
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-gray-700 dark:text-gray-200"
+          className="md:hidden flex items-center justify-center w-9 h-9 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-700 dark:text-gray-200"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle Menu"
         >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
+          {isOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </nav>
 
+      {/* Mobile Dropdown Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
             initial={{ y: -200, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             exit={{ y: -200, opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-md shadow-lg rounded-2xl mt-2 border border-gray-200 dark:border-gray-700"
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-white/95 dark:bg-gray-900/95 backdrop-blur-xl shadow-lg rounded-2xl mt-2 border border-gray-200 dark:border-gray-700"
           >
             <ul className="flex flex-col items-center space-y-4 py-6">
               {navItems.map((item, idx) => (
@@ -102,15 +121,33 @@ export default function Header() {
                   </Link>
                 </li>
               ))}
+
+              {/* Resume Button */}
+              <li>
+                <a
+                  href="/resume.pdf"
+                  download
+                  className="flex items-center gap-2 px-4 py-2 rounded-full text-lg font-semibold text-white bg-blue-600 hover:bg-blue-700 transition shadow-md"
+                >
+                  <FileDown size={20} />
+                  Resume
+                </a>
+              </li>
+
+              {/* Dark Mode Toggle */}
               <li>
                 <button
                   onClick={toggleTheme}
-                  className="flex items-center gap-2 px-4 py-2 rounded-full text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  className="flex items-center gap-2 px-4 py-2 rounded-full text-lg text-gray-800 dark:text-gray-200 hover:bg-gray-100 dark:hover:bg-gray-800"
                 >
                   {theme === "dark" ? (
-                    <><Sun size={20} className="text-yellow-400" /> Light Mode</>
+                    <>
+                      <Sun size={20} className="text-yellow-400" /> Light Mode
+                    </>
                   ) : (
-                    <><Moon size={20} className="text-gray-600" /> Dark Mode</>
+                    <>
+                      <Moon size={20} className="text-gray-600" /> Dark Mode
+                    </>
                   )}
                 </button>
               </li>
